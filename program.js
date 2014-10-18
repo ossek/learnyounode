@@ -1,12 +1,19 @@
 'use strict';
-global.hello = (function(){
-	var printhello = function(){
-		console.log('HELLO WORLD');
+global.learn = (function(){
+	var sumCmdLineInts = function(){
+	  var args = global.process.argv;
+	  var inputs = args.slice(2,args.length);
+	  var i = 0;
+	  var sum = 0;
+	  for(i; i < inputs.length; i++){
+	  	sum += Number(inputs[i]);
+	  }
+	  return sum;
 	};
 
 	return {
-		printhello:printhello
+		sumCmdLineInts: sumCmdLineInts
 	};
 })();
 
-hello.printhello();
+console.log(global.learn.sumCmdLineInts());
