@@ -2,7 +2,21 @@
 global.learn = (function(){
 	var fs = require('fs');
 
-	var countNewlinesInFile = function(){
+       var countNewlinesInFile = function(){
+	  var args = global.process.argv;
+	  var filename = args[2];
+	  var count = 0;
+	  fs.readFile(filename,'utf8',function(err,filestr){
+		  if(err === null || err === undefined){
+                     var lines = filestr.split('\n');            
+		     count = lines.length - 1;
+		     console.log(count);
+		  }
+
+	  });
+	};
+
+	var countNewlinesInFileSync = function(){
 	  var args = global.process.argv;
 	  var filename = args[2];
 	  var filebuf = fs.readFileSync(filename);
@@ -29,6 +43,6 @@ global.learn = (function(){
 	};
 })();
 
-console.log(learn.countNewlinesInFile());
+learn.countNewlinesInFile();
 
 
