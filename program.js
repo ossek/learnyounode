@@ -1,6 +1,25 @@
 'use strict';
 global.learn = (function(){
 	var fs = require('fs');
+	var path = require('path');
+
+	var filterLs = function(){
+		var args = global.process.argv;
+		var dirname = args[2];
+		var extension = '.' + args[3];
+		fs.readdir(dirname,function(err,list){
+			var i = 0;
+			var result = [];
+			for(i; i < list.length; i++){
+				var filename = list[i];
+				var ext = path.extname(filename);
+				if(ext.toUpperCase() === extension.toUpperCase()){
+					result.push(filename);
+				}
+			}
+			console.log(result.join('\n'));
+		});
+	};
 
        var countNewlinesInFile = function(){
 	  var args = global.process.argv;
@@ -39,10 +58,11 @@ global.learn = (function(){
 
 	return {
 		sumCmdLineInts: sumCmdLineInts,
-                countNewlinesInFile:countNewlinesInFile
+                countNewlinesInFile:countNewlinesInFile,
+			filterLs:filterLs
 	};
 })();
 
-learn.countNewlinesInFile();
+learn.filterLs();
 
 
