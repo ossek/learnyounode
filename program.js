@@ -4,9 +4,10 @@ global.learn = (function(){
 	var path = require('path');
 	var filterls = require('./filterls');
 	var learnHttpClient = require('./learnHttpClient');
+	var httpCollector = require('./httpCollector');
 
 	var listenUrl = function(){
-		learnHttpClient.listenGet(global.process.argv[2]);
+		httpCollector.listenGet(global.process.argv[2]);
 	};
 
 	var filterls_print = function(){
