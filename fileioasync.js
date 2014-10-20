@@ -1,29 +1,6 @@
 'use strict';
 global.learn = (function(){
 	var fs = require('fs');
-	var path = require('path');
-	var filterls = require('./filterls');
-	var learnHttpClient = require('./learnHttpClient');
-
-	var listenUrl = function(){
-		learnHttpClient.listenGet(global.process.argv[2]);
-	};
-
-	var filterls_print = function(){
-		var dirname = global.process.argv[2];
-		var extension = global.process.argv[3];
-		if(dirname === null || dirname === undefined || extension === null || extension === undefined){
-			console.log("error with args ");
-			return;
-		}
-		filterls(dirname,extension,function(err,filename_list){
-			if(err){
-				console.write("error: " + err);
-				return;
-			}
-			console.log(filename_list.join('\n'));
-		});
-	};
 
        var countNewlinesInFile = function(){
 	  var args = global.process.argv;
@@ -62,12 +39,10 @@ global.learn = (function(){
 
 	return {
 		sumCmdLineInts: sumCmdLineInts,
-                countNewlinesInFile:countNewlinesInFile,
-	        filterls_print: filterls_print,
-			listenUrl : listenUrl
+                countNewlinesInFile:countNewlinesInFile
 	};
 })();
 
-learn.listenUrl();
+learn.countNewlinesInFile();
 
 

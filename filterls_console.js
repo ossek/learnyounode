@@ -3,11 +3,6 @@ global.learn = (function(){
 	var fs = require('fs');
 	var path = require('path');
 	var filterls = require('./filterls');
-	var learnHttpClient = require('./learnHttpClient');
-
-	var listenUrl = function(){
-		learnHttpClient.listenGet(global.process.argv[2]);
-	};
 
 	var filterls_print = function(){
 		var dirname = global.process.argv[2];
@@ -63,11 +58,10 @@ global.learn = (function(){
 	return {
 		sumCmdLineInts: sumCmdLineInts,
                 countNewlinesInFile:countNewlinesInFile,
-	        filterls_print: filterls_print,
-			listenUrl : listenUrl
+	        filterls_print: filterls_print
 	};
 })();
 
-learn.listenUrl();
+learn.filterls_print();
 
 
