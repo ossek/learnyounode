@@ -6,6 +6,13 @@ global.learn = (function(){
 	var learnHttpClient = require('./learnHttpClient');
 	var httpCollector = require('./httpCollector');
 	var multAsyncUrl = require('./multAsyncUrl');
+	var tcpTime = require('./tcpTime');
+
+	var makeTcpTimeServer = function(){
+		var port = global.process.argv[2];
+		var server = tcpTime.createTcpServer(port);
+	};
+
 
 	var listenMultAsyncUrl = function(){
 		var urls = global.process.argv.slice(2);
@@ -73,11 +80,12 @@ global.learn = (function(){
 		sumCmdLineInts: sumCmdLineInts,
                 countNewlinesInFile:countNewlinesInFile,
 	        filterls_print: filterls_print,
-			listenUrl : listenUrl,
-                 listenMultAsyncUrl : listenMultAsyncUrl
+		listenUrl : listenUrl,
+                listenMultAsyncUrl : listenMultAsyncUrl,
+                makeTcpTimeServer:makeTcpTimeServer
 	};
 })();
 
-learn.listenMultAsyncUrl();
+learn.makeTcpTimeServer();
 
 
