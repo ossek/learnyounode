@@ -8,6 +8,12 @@ global.learn = (function(){
 	var multAsyncUrl = require('./multAsyncUrl');
 	var tcpTime = require('./tcpTime');
 	var fileServer = require('./fileServer');
+	var httpUpper = require('./httpUpper');
+
+	var makeHttpUpperServer = function() {
+		var port = global.process.argv[2];
+		httpUpper(port);
+	};
 
 	var makeFileServer = function(){
 		var port = global.process.argv[2];
@@ -89,10 +95,11 @@ global.learn = (function(){
 		listenUrl : listenUrl,
                 listenMultAsyncUrl : listenMultAsyncUrl,
                 makeTcpTimeServer:makeTcpTimeServer,
-                makeFileServer:makeFileServer
+                makeFileServer:makeFileServer,
+		makeHttpUpperServer: makeHttpUpperServer
 	};
 })();
 
-learn.makeFileServer();
+learn.makeHttpUpperServer();
 
 
